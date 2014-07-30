@@ -6,6 +6,12 @@ import grails.mongodb.geo.Point
 
 class CityController {
 
+    def index() {
+        def cities = City.findAll()
+        def resp = [count: cities.size(), cities: cities]
+        render resp as JSON
+    }
+
     def state() {
         def cities = City.findAllByState(params.state)
         def resp = [count: cities.size(), cities: cities]
